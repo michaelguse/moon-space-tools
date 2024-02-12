@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-range="4d"
+range="4d"          #default
 
 while (( $# )); do
     case $1 in
