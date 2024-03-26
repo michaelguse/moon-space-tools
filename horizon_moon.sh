@@ -1,6 +1,13 @@
 #!/bin/zsh
 
-range="4d"          #default
+local range="4d"          #default
+local positional=()
+local usage=(
+    "horizon_moon.sh [-h|--help] [-r|--range=<value>]"
+    "Default for range=4d"
+)
+
+opterr() { echo >&2 "optparsing_demo: Unknown option '$1'" }
 
 while (( $# )); do
     case $1 in
