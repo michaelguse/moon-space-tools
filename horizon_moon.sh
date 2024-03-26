@@ -3,8 +3,7 @@
 local range="4d"          #default
 local positional=()
 local usage=(
-    "horizon_moon.sh [-h|--help] [-r|--range=<value>]"
-    "Default for range=4d"
+    "horizon_moon.sh [-h|--help] [-r|--range <number of days|default('4d')>]"
 )
 
 opterr() { echo >&2 "optparsing_demo: Unknown option '$1'" }
