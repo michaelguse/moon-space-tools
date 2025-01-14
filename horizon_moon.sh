@@ -7,7 +7,7 @@ local usage=(
     "horizon_moon.sh [-h|--help] [-d|--debug] [-r|--range <number of days|default('4d')>]"
 )
 
-opterr() { echo >&2 "optparsing_demo: Unknown option '$1'" }
+opterr() { echo >&2 "horizon_moon: Unknown option '$1'" }
 
 while (( $# )); do
     case $1 in
@@ -36,7 +36,7 @@ then
     echo "\n"
     echo 'Press any key to continue...'; read -k1 -s
 
-    curl -v -s https://ssd.jpl.nasa.gov/api/horizons.api\?format\=text\&COMMAND\='301'\&OBJ_DATA\='NO'\&MAKE_EPHEM\='YES'\&EPHEM_TYPE\='OBSERVER'\&CENTER\='759'\&START_TIME\=$startDate\&STOP_TIME\=$endDate\&TIME_ZONE\='-6'\&STEP_SIZE\='1h'\&ELEV_CUT\='0'\&QUANTITIES\="$strQuantities" | less
+    curl -v -s https://ssd.jpl.nasa.gov/api/horizons.api\?format\=text\&COMMAND\='301'\&OBJ_DATA\='NO'\&MAKE_EPHEM\='YES'\&EPHEM_TYPE\='OBSERVER'\&CENTER\='759'\&START_TIME\=$startDate\&STOP_TIME\=$endDate\&TIME_ZONE\='-6'\&STEP_SIZE\='1h'\&ELEV_CUT\='0'\&QUANTITIES\="$strQuantities" | cat 
 else
-    curl -s https://ssd.jpl.nasa.gov/api/horizons.api\?format\=text\&COMMAND\='301'\&OBJ_DATA\='NO'\&MAKE_EPHEM\='YES'\&EPHEM_TYPE\='OBSERVER'\&CENTER\='759'\&START_TIME\=$startDate\&STOP_TIME\=$endDate\&TIME_ZONE\='-6'\&STEP_SIZE\='1h'\&ELEV_CUT\='0'\&QUANTITIES\="$strQuantities" | less
+    curl -s https://ssd.jpl.nasa.gov/api/horizons.api\?format\=text\&COMMAND\='301'\&OBJ_DATA\='NO'\&MAKE_EPHEM\='YES'\&EPHEM_TYPE\='OBSERVER'\&CENTER\='759'\&START_TIME\=$startDate\&STOP_TIME\=$endDate\&TIME_ZONE\='-6'\&STEP_SIZE\='1h'\&ELEV_CUT\='0'\&QUANTITIES\="$strQuantities" | cat
 fi
