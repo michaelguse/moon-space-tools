@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 local range="4d"            #default
-local visible="0"             #default
+local visible="0"           #default
 local positional=()
 local debug="false"
 local usage=(
@@ -28,8 +28,7 @@ endDate=`date -v+$range "+%Y-%m-%d"`
 strQuantities="'4,10'"
 elevCut=$visible
 
-if [[ $debug == "true" ]] 
-then
+if [[ $debug == "true" ]] then
     echo "Debug Info"
     echo "--------------------------------"
     echo "Start Date: ${startDate}"
@@ -39,8 +38,9 @@ then
     
     echo "\n"
     echo 'Press any key to continue...'; read -k1 -s
-
-    curl -v -s https://ssd.jpl.nasa.gov/api/horizons.api\?format\=text\&COMMAND\='301'\&OBJ_DATA\='NO'\&MAKE_EPHEM\='YES'\&EPHEM_TYPE\='OBSERVER'\&CENTER\='759'\&START_TIME\=$startDate\&STOP_TIME\=$endDate\&TIME_ZONE\='-6'\&STEP_SIZE\='1h'\&ELEV_CUT\=$elevCut\&QUANTITIES\="$strQuantities"
-else
-    curl -s https://ssd.jpl.nasa.gov/api/horizons.api\?format\=text\&COMMAND\='301'\&OBJ_DATA\='NO'\&MAKE_EPHEM\='YES'\&EPHEM_TYPE\='OBSERVER'\&CENTER\='759'\&START_TIME\=$startDate\&STOP_TIME\=$endDate\&TIME_ZONE\='-6'\&STEP_SIZE\='1h'\&ELEV_CUT\=$elevCut\&QUANTITIES\="$strQuantities"
+    
+    curl -v https://ssd.jpl.nasa.gov/api/horizons.api\?format\=text\&COMMAND\='301'\&OBJ_DATA\='NO'\&MAKE_EPHEM\='YES'\&EPHEM_TYPE\='OBSERVER'\&CENTER\='759'\&START_TIME\=$startDate\&STOP_TIME\=$endDate\&TIME_ZONE\='-6'\&STEP_SIZE\='1h'\&ELEV_CUT\=$elevCut\&QUANTITIES\="$strQuantities"
+  else
+    curl -s -S https://ssd.jpl.nasa.gov/api/horizons.api\?format\=text\&COMMAND\='301'\&OBJ_DATA\='NO'\&MAKE_EPHEM\='YES'\&EPHEM_TYPE\='OBSERVER'\&CENTER\='759'\&START_TIME\=$startDate\&STOP_TIME\=$endDate\&TIME_ZONE\='-6'\&STEP_SIZE\='1h'\&ELEV_CUT\=$elevCut\&QUANTITIES\="$strQuantities"
 fi
+
