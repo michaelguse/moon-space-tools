@@ -5,7 +5,7 @@ local visible="0"           #default
 local positional=()
 local debug="false"
 local usage=(
-    "horizon_moon.sh [-h|--help] [-d|--debug] [-v|--visible <is moon visible|default('0')>] [-r|--range <number of days|default('4d')>]"
+    "horizon_moon.sh [-h|--help] [-d|--debug] [-e|--elevationVis <is moon visible|default('0')>] [-n|--numDays <number of days|default('4d')>]"
 )
 
 opterr() { echo >&2 "horizon_moon: Unknown option '$1'" }
@@ -15,8 +15,8 @@ while (( $# )); do
         --)                 shift; positional+=("${@[@]}"); break  ;;
         -h|--help)          printf "%s\n" $usage && return         ;;
         -d|--debug)         debug="true"                           ;;
-        -v|--visible)       shift; visible=$1                      ;;
-        -r|--range)         shift; range=$1                        ;;
+        -e|--elevationVis)  shift; visible=$1                      ;;
+        -n|--numDays)       shift; range=$1                        ;;
         -*)                 opterr $1 && return 2                  ;;
         *)                  positional+=("${@[@]}"); break         ;;
     esac
@@ -34,7 +34,7 @@ if [[ $debug == "true" ]] then
     echo "Start Date: ${startDate}"
     echo "End Date: ${endDate}"
     echo "Quantities: ${strQuantities}"
-    echo "Visible: ${elevCut}"
+    echo "Elevation Visible: ${elevCut}"
     
     echo "\n"
     echo 'Press any key to continue...'; read -k1 -s
